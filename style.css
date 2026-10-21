@@ -1,0 +1,460 @@
+/* ==========================================================
+   Green Data Centers - Eco-tech palette (deep green + lime)
+   Works with the existing index.html (no HTML changes needed)
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap");
+
+:root {
+  --deep: #0b3022;        /* darkest green: nav, footer */
+  --forest: #123d2a;      /* main dark sections */
+  --leaf: #2e7d4f;        /* secondary green, accents on light */
+  --lime: #b8f36b;        /* single accent: buttons, highlights */
+  --mint: #e6f4ea;       /* light sections */
+  --mint-deep: #dce9e1;  /* light panels */
+  --white: #ffffff;
+  --ink: #0f1f17;         /* text on light */
+  --ink-soft: #3d5247;   /* secondary text on light */
+  --on-dark-soft: #c9dccf; /* secondary text on dark */
+
+  --nav-h: 72px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --font-head: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--forest);
+  line-height: 1.6;
+}
+
+section {
+  scroll-margin-top: var(--nav-h);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+
+/* ---------- NAV ---------- */
+nav {
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  background: rgba(11, 48, 34, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(184, 243, 107, 0.25);
+}
+
+nav h3 {
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+nav ul {
+  display: flex;
+  gap: clamp(14px, 2.4vw, 36px);
+  align-items: center;
+  list-style: none;
+}
+
+nav ul li {
+  list-style: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white);
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+nav ul a:hover li,
+nav ul a:focus-visible li {
+  color: var(--lime);
+  border-bottom-color: var(--lime);
+}
+
+/* ---------- HOME (video hero) ---------- */
+#Home {
+  position: relative;
+  height: 100vh;
+  min-height: 420px;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--deep);
+}
+
+#Home .hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* soft dark fade so the nav stays readable over the video */
+#Home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(11, 48, 34, 0.55) 0%, rgba(11, 48, 34, 0) 35%);
+}
+
+/* ---------- CONTENT SECTIONS ---------- */
+#About,
+#Energy,
+#Technology,
+#Impact {
+  padding: 56px 5% 72px;
+}
+
+/* alternate dark and light so the page has rhythm */
+#About      { background: var(--mint); }
+#Energy     { background: var(--forest); }
+#Technology { background: var(--mint); }
+#Impact     { background: var(--forest); }
+
+.heading {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+h1 {
+  font-family: var(--font-head);
+  font-size: clamp(30px, 4.4vw, 50px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#About h1,
+#Technology h1 { color: var(--forest); }
+#Energy h1,
+#Impact h1     { color: var(--white); }
+
+/* ---------- TEXT + IMAGE ROW ---------- */
+.box {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(20px, 3vw, 40px);
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 460px;
+}
+
+.left,
+.right {
+  flex: 1 1 0;
+  border-radius: var(--radius-lg);
+}
+
+.left {
+  background: var(--white);
+  color: var(--ink);
+  padding: clamp(24px, 4vw, 56px);
+  border-left: 6px solid var(--lime);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(11, 48, 34, 0.12);
+}
+
+/* white panel on the light sections gets a green edge instead */
+#About .left,
+#Technology .left {
+  border-left-color: var(--leaf);
+}
+
+.left h2 {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+  color: var(--forest);
+  margin: 0 0 14px;
+}
+
+.left h2:not(:first-child) {
+  margin-top: 28px;
+}
+
+.left p {
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  max-width: 62ch;
+}
+
+.right {
+  min-height: 320px;
+  background-color: var(--mint-deep);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 30px rgba(11, 48, 34, 0.18);
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--deep);
+  background: var(--lime);
+  border: 2px solid var(--lime);
+  border-radius: 999px;
+  padding: 10px 22px;
+  margin: 12px 10px 0 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+button:hover {
+  background: var(--forest);
+  color: var(--lime);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* ---------- BOTTOM PANELS (cards live here) ---------- */
+.bottom {
+  max-width: 1200px;
+  margin: 48px auto 0;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--mint-deep);
+  border-radius: var(--radius-lg);
+}
+
+#Technology .bottom {
+  background: var(--forest);
+}
+
+#Technology .bottom h2 {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 3vw, 34px);
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+/* TECHNOLOGY cards */
+#Technology .card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border-top: 5px solid var(--lime);
+  padding: 24px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+}
+
+.card h4 {
+  font-family: var(--font-head);
+  font-size: 19px;
+  color: var(--forest);
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 15.5px;
+  color: var(--ink-soft);
+}
+
+/* IMPACT cards */
+#Impact .bottom {
+  background: var(--mint-deep);
+}
+
+#Impact .data {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 28px;
+}
+
+#Impact .data h2 {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 3vw, 34px);
+  color: var(--forest);
+  margin-bottom: 8px;
+}
+
+#Impact .data p {
+  color: var(--ink-soft);
+}
+
+#Impact .card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.i-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border-left: 5px solid var(--leaf);
+  padding: 22px;
+  box-shadow: 0 8px 22px rgba(11, 48, 34, 0.12);
+}
+
+.i-card h3 {
+  font-family: var(--font-head);
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--forest);
+  margin-bottom: 8px;
+}
+
+.i-card p {
+  font-size: 15.5px;
+  color: var(--ink-soft);
+}
+
+/* ---------- CONTACT / FOOTER ---------- */
+#Contact-Us {
+  background: var(--deep);
+  color: var(--white);
+  padding: 40px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  border-top: 4px solid var(--lime);
+}
+
+#Contact-Us p {
+  font-size: 15px;
+  color: var(--on-dark-soft);
+}
+
+.fright,
+.reference,
+.contact {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reference ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  list-style: none;
+  justify-content: center;
+}
+
+.reference li {
+  list-style: none;
+  font-size: 15px;
+  color: var(--white);
+  transition: color 0.2s;
+}
+
+.reference a:hover li,
+.reference a:focus-visible li {
+  color: var(--lime);
+}
+
+/* .contact {
+  align-items: flex-end;
+  text-align: right;
+} */
+
+/* .contact p:first-child {
+  font-family: var(--font-head);
+  color: var(--white);
+  font-size: 18px;
+} */
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1000px) {
+  #Technology .card-container { grid-template-columns: repeat(2, 1fr); }
+  #Impact .card-container     { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  nav { padding: 0 4%; }
+  nav h3 { font-size: 17px; }
+  nav ul { gap: 10px; }
+  nav ul li { font-size: 13px; }
+
+  .box { flex-direction: column; min-height: 0; }
+  .right { min-height: 240px; flex: none; }
+
+  #Technology .card-container,
+  #Impact .card-container { grid-template-columns: 1fr; }
+
+  #Contact-Us { flex-direction: column; text-align: center; }
+  /* .contact { align-items: center; text-align: center; } */
+}
+
+@media (max-width: 520px) {
+  /* nav links drop below the title on very small phones */
+  nav { flex-direction: column; justify-content: center; gap: 2px; height: auto; min-height: var(--nav-h); padding: 8px 4%; }
+  section { scroll-margin-top: 90px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ---------- IMAGES (same files as before) ---------- */
+#About .right {
+  background-image: url("pictures/Solar_panels_connecting_to_data_2K_20261013074134.jpg");
+}
+
+#Energy .right {
+  background-image: url("pictures/Solar_panels_powering_data_center_2K_20261013073039.jpg");
+}
+
+#Technology .right {
+  background-image: url("pictures/Server_racks_showing_energy_effi…_2K_20261013073044.jpg");
+}
+
+#Impact .right {
+  background-image: url("pictures/Sustainable Green Data Center at Sunrise-1.png");
+}
